@@ -18,6 +18,7 @@ import websitesIcon from "../assets/websiteIcon.svg";
 import revolutionBackground from "../assets/repeatingBackground.svg";
 import inforBackground from "../assets/infoBackground.svg";
 import CallToAction from "./ui/CallToAction";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   animation: {
@@ -164,12 +165,24 @@ function LandingPage(props) {
               className={classes.buttonContainer}
             >
               <Grid item>
-                <Button className={classes.estimateButton} variant="contained">
+                <Button
+                  className={classes.estimateButton}
+                  variant="contained"
+                  component={Link}
+                  to="/estimate"
+                  onCLick={() => props.setValue(5)}
+                >
                   Free Estimate
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.learnButtonHero}>
+                <Button
+                  variant="outlined"
+                  className={classes.learnButtonHero}
+                  component={Link}
+                  to="/revolution"
+                  onCLick={() => props.setValue(2)}
+                >
                   <span style={{ marginRight: 10 }}>Learn More</span>
                   <ButtonArrow
                     width={15}
@@ -213,7 +226,16 @@ function LandingPage(props) {
               Complete digital solutions, from investigation to{" "}
               <span className={classes.specialText}>celebration</span>
             </Typography>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              variant="outlined"
+              className={classes.learnButton}
+              component={Link}
+              to="/customsoftware"
+              onCLick={() => {
+                props.setValue(1);
+                props.setSelectedIndex(1);
+              }}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
                 width={15}
@@ -254,7 +276,16 @@ function LandingPage(props) {
               Integrate your web experience or create a standalone app
               {matchesSM ? null : <br />} with either moblie platform.
             </Typography>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              variant="outlined"
+              className={classes.learnButton}
+              component={Link}
+              to="/mobileapps"
+              onCLick={() => {
+                props.setValue(1);
+                props.setSelectedIndex(2);
+              }}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
                 width={15}
@@ -300,7 +331,16 @@ function LandingPage(props) {
             <Typography variant="subtitle1">
               Optimized for Search Engines, built for speed.
             </Typography>
-            <Button variant="outlined" className={classes.learnButton}>
+            <Button
+              variant="outlined"
+              className={classes.learnButton}
+              component={Link}
+              to="/websites"
+              onCLick={() => {
+                props.setValue(1);
+                props.setSelectedIndex(3);
+              }}
+            >
               <span style={{ marginRight: 10 }}>Learn More</span>
               <ButtonArrow
                 width={15}
@@ -347,6 +387,9 @@ function LandingPage(props) {
                   <Button
                     variant="outlined"
                     className={classes.learnButtonHero}
+                    component={Link}
+                    to="/revolution"
+                    onCLick={() => props.setValue(2)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow
@@ -370,23 +413,26 @@ function LandingPage(props) {
           style={{ height: "80em" }}
           alignItems="center"
           direction="row"
+          className={classes.inforBackground}
         >
           <Grid
             item
             container
             style={{
-              position: "absolute",
               textAlign: matchesXS ? "center" : "inherit",
             }}
             direction={matchesXS ? "column" : "row"}
-            spacing={matchesXS ? 10 : 0}
           >
             <Grid
               item
               sm
               style={{ marginLeft: matchesXS ? 0 : matchesSM ? "2em" : "5em" }}
             >
-              <Grid container direction="column">
+              <Grid
+                container
+                direction="column"
+                style={{ marginBottom: matchesXS ? "10em" : 0 }}
+              >
                 <Typography variant="h2" style={{ color: "white" }}>
                   About Us
                 </Typography>
@@ -396,6 +442,9 @@ function LandingPage(props) {
                     variant="outlined"
                     className={classes.learnButton}
                     style={{ color: "white", borderColor: "white" }}
+                    component={Link}
+                    to="/about"
+                    onCLick={() => props.setValue(3)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill={"white"} />
@@ -427,6 +476,9 @@ function LandingPage(props) {
                     variant="outlined"
                     className={classes.learnButton}
                     style={{ color: "white", borderColor: "white" }}
+                    component={Link}
+                    to="/contact"
+                    onCLick={() => props.setValue(4)}
                   >
                     <span style={{ marginRight: 10 }}>Learn More</span>
                     <ButtonArrow width={15} height={15} fill={"white"} />
@@ -435,12 +487,11 @@ function LandingPage(props) {
               </Grid>
             </Grid>
           </Grid>
-          <div className={classes.inforBackground} />
         </Grid>
       </Grid>
       {/* Call To Action */}
       <Grid item>
-        <CallToAction />
+        <CallToAction setValue={props.setValue} />
       </Grid>
     </Grid>
   );

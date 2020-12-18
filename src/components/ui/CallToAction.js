@@ -10,6 +10,7 @@ import React from "react";
 import ButtonArrow from "./ButtonArrow";
 import background from "../../assets/background.jpg";
 import mobileBackground from "../../assets/mobileBackground.jpg";
+import { Link } from "react-router-dom";
 
 const useStyle = makeStyles((theme) => ({
   learnButton: {
@@ -49,6 +50,9 @@ const useStyle = makeStyles((theme) => ({
       marginRight: 0,
       marginLeft: 0,
     },
+    "&:hover": {
+      backgroundColor: theme.palette.secondary.light,
+    },
   },
 }));
 
@@ -83,7 +87,13 @@ function CallToAction(props) {
               Take advantage of the 21st Century
             </Typography>
             <Grid container justify={matchesSM ? "center" : undefined} item>
-              <Button variant="outlined" className={classes.learnButton}>
+              <Button
+                variant="outlined"
+                className={classes.learnButton}
+                component={Link}
+                to="/revolution"
+                onCLick={() => props.setValue(2)}
+              >
                 <span style={{ marginRight: 5 }}>Learn More</span>
                 <ButtonArrow
                   width={10}
@@ -96,7 +106,13 @@ function CallToAction(props) {
         </Grid>
       </Grid>
       <Grid item>
-        <Button variant="contained" className={classes.estimateButton}>
+        <Button
+          variant="contained"
+          className={classes.estimateButton}
+          component={Link}
+          to="/estimate"
+          onCLick={() => props.setValue(5)}
+        >
           Free Estimate
         </Button>
       </Grid>
