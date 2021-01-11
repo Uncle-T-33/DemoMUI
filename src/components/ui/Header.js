@@ -199,7 +199,7 @@ export default function Header(props) {
               route.selectedIndex &&
               route.selectedIndex !== props.selectedIndex
             ) {
-              props.setSelectedIndex(route.props.selectedIndex);
+              props.setSelectedIndex(route.selectedIndex);
             }
           }
           break;
